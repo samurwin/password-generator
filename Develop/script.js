@@ -38,6 +38,23 @@ var passCriteria = function() {
     
   };
 
+// getAvailableCharacterTypes() iterate over the lower upper numeric and special chatacter attributes of the character obj
+var getAvailableCharacterTypes = function(criteriaObj) {
+  var availableCharacterTypes = []
+  
+  // if it is true add it to the available character array
+  if (criteriaObj.lower) {
+    availableCharacterTypes.push("lower");
+  } if (criteriaObj.upper) {
+    availableCharacterTypes.push("upper");
+  } if (criteriaObj.numeric) {
+    availableCharacterTypes.push("numeric");
+  } if (criteriaObj.special) {
+    availableCharacterTypes.push("special");
+  }
+
+  return availableCharacterTypes;
+};
 
 // get random character index (availableCharacterTypesArray.length)
 var getRandomCharacterIndex = function (arrayLength) {
@@ -70,6 +87,36 @@ var getRandomSpecial = function () {
   var i = Math.floor(Math.random() * 31);
   var char = specialCharacter[i];
   return char;
+};
+
+// get random character(availableCharacterTypesArray)
+var getRandomCharacter = function(availableCharacterTypesArray) {
+  var i = getRandomCharacterIndex(availableCharacterTypesArray.length);
+  
+  var characterType = availableCharacterTypesArray[i];
+
+  // switch statement to decide which character type to randomly generate
+  switch (characterType) {
+    case "lower":
+      return getRandomLower();
+    case "upper":
+      return getRandomUpper();
+    case "numeric":
+      return getRandomNumeric();
+    case "special":
+      return getRandomSpecial();
+  }
+};
+  
+// create a function to generate the password
+var generatePassword = function(criteriaObj) {
+  var availableCharacterTypesArray = getAvailableCharacterTypes(criteriaObj);
+  var passwordCharacters = [];
+  for (var i = 0; i < criteriaObj.length; i++) {
+    var randomCharacter = getRandomCharacter(availableCharacterTypesArray);
+    passwordCharacters.push(randomCharacter)
+  }
+  return passwordCharacters.join('');
 };
 
 // Get references to the #generate element
