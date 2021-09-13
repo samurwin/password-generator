@@ -1,5 +1,39 @@
 // Assignment code here
 
+// create a function to gather criteia for the password
+var passCriteria = function() {
+
+  var passLength = prompt("How long would you like your password to be? Please answer with a number between 8 - 128");
+  // check if the answer is between 8 - 128, and check that it is a number
+  passLength = parseInt(passLength);
+  
+  while (passLength < 8 || passLength > 128) {
+    alert("Please pick a number between 8 - 128");
+    passLength = parseInt(prompt("How long would you like your password to be? Please answer with a number between 8 - 128"));
+  }
+  
+  var lowerCase = confirm("Would you like your password to include lowercase characters?");
+  var upperCase = confirm("Would you like your password to include uppercase letters?");
+  var numbers = confirm("Would you like your password to include numeric characters?");
+  var specialChar = confirm("Would you like your password to include special characters?");
+  
+  while (!lowerCase && !upperCase && !numbers && !specialChar) {
+    alert("You need to select at least one of the criteria. Try again!");
+    lowerCase = confirm("Would you like your password to include lowercase characters?");
+    upperCase = confirm("Would you like your password to include uppercase letters?");
+    numbers = confirm("Would you like your password to include numeric characters?");
+    specialChar = confirm("Would you like your password to include special characters?");
+  }
+  
+  return {
+    length: passLength,
+    lower: lowerCase,
+    upper: upperCase,
+    numeric: numbers,
+    special: specialChar
+  }
+    
+  };
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
