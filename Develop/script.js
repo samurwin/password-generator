@@ -38,6 +38,40 @@ var passCriteria = function() {
     
   };
 
+
+// get random character index (availableCharacterTypesArray.length)
+var getRandomCharacterIndex = function (arrayLength) {
+  return Math.floor(Math.random() * arrayLength);
+};
+
+// get random lower 
+var getRandomLower = function () {
+  var i = Math.floor(Math.random() * 26);
+  char = lowerCharacters[i];
+  return char;
+};
+
+// get random upper
+var getRandomUpper = function () {
+  var i = Math.floor(Math.random() * 26);
+  var char = lowerCharacters[i].toUpperCase();
+  return char;
+};
+
+// get random numeric
+var getRandomNumeric = function () {
+  var i = Math.floor(Math.random() * 10);
+  var char = numericCharacters[i];
+  return char;
+};
+
+// get random special
+var getRandomSpecial = function () {
+  var i = Math.floor(Math.random() * 31);
+  var char = specialCharacter[i];
+  return char;
+};
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
